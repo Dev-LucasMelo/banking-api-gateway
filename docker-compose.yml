@@ -21,9 +21,9 @@ services:
       - redis
     volumes:
       - .:/app
-    environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
+      - /app/node_modules
+    env_file:
+      - .env
     networks:
       - loomi_network
     restart: unless-stopped
