@@ -24,7 +24,7 @@ export class RedisService implements OnModuleInit {
   }
 
   async set(key: string, value: string) {
-    await this.redisClient.set(key, value);
+    await this.redisClient.set(key, value, 'EX', 3600);
   }
 
   async get(key: string) {
