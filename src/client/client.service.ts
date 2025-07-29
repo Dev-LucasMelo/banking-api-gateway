@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { ConfigService } from '@nestjs/config';
+import { updateClientDto } from './validation/updateClientDto';
 
 @Injectable()
 export class ClientService {
@@ -23,4 +24,18 @@ export class ClientService {
             throw new BadRequestException('Erro ao buscar cliente');
         });
     }
+
+    async update(id: string, data: updateClientDto) {
+        return await firstValueFrom(
+            this.httpService.patch(`${this.BaseUrlClient}client/${id}`, data)
+        ).then((response) => {
+            return response.data;
+        }).catch((err) => {
+            const { response } = err
+            const { data } = response
+
+            throw new BadRequestException(data);
+        });
+    }
+
 }
