@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { loginDto } from './validations/login.dto';
 import { JWTguard } from './jwt.guard';
 import { clientLoggedIn } from './decorators/clientLoggedIn.decorator';
+import { registerDto } from './validations/register.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -12,14 +13,19 @@ export class AuthController {
 
     @Post("/login")
     @HttpCode(200)
-    async login(@Body() dados: loginDto) {
-        return await this.authService.login(dados)
+    async login(@Body() data: loginDto) {
+        return await this.authService.login(data)
     }
 
     @Post("/logout")
     @UseGuards(JWTguard)
-    async logout(@clientLoggedIn() client: any){
+    async logout(@clientLoggedIn() client: any) {
         return await this.authService.logout(client)
+    }
+
+    @Post("/register")
+    async register(@Body() data: registerDto) {
+        return await this.authService.register(data)
     }
 
 
