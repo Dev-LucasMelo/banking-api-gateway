@@ -3,6 +3,7 @@ import { RedisModule } from './redis/redis.module';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { ClientModule } from './client/client.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -11,7 +12,8 @@ import { AuthModule } from './auth/auth.module';
     }),
     RedisModule,
     HttpModule,
-    AuthModule
+    AuthModule,
+    ClientModule
   ],
   controllers: [],
   providers: [],
