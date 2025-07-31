@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards, Param } from '@nestjs/common';
 import { JWTguard } from 'src/auth/jwt.guard';
 import { TransactionsService } from './transactions.service';
 import { makeTransferDto } from './validation/makeTransfer.dto';
@@ -15,6 +15,11 @@ export class TransactionsController {
     @Post('/')
     async makeTransfer(@Body() data: makeTransferDto, @clientLoggedIn() client: any) {
         return await this.service.sendTransfer(data, client.id)
+    }
+
+    @Get('/')
+    async getTransfers(@clientLoggedIn() client: any) {
+        return await this.service.getTransfers(client.id)
     }
 }
 
