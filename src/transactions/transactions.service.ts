@@ -48,4 +48,14 @@ export class TransactionsService {
             throw new BadRequestException('Erro ao buscar transações');
         });
     }
+
+    async getTransferDetails(transactionId: string) {
+        return await firstValueFrom(
+            this.httpService.get(`${this.BaseUrlTransactions}transactions/${transactionId}`)
+        ).then((response) => {
+            return response.data;
+        }).catch((err) => {
+            throw new BadRequestException('Erro ao buscar detalhes da transacao');
+        });
+    }
 }

@@ -21,5 +21,10 @@ export class TransactionsController {
     async getTransfers(@clientLoggedIn() client: any) {
         return await this.service.getTransfers(client.id)
     }
+
+    @Get('/:id')
+    async getTransferDetails(@Param('id') transactionId: string, @clientLoggedIn() client: any) {
+        return await this.service.getTransferDetails(transactionId)
+    }
 }
 
