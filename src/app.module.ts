@@ -4,7 +4,7 @@ import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { ClientModule } from './client/client.module';
-import { KafkaModule } from './kafka/kafka.module';
+import { TransactionsModule } from './transactions/transactions.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -15,7 +15,7 @@ import { KafkaModule } from './kafka/kafka.module';
     HttpModule,
     AuthModule,
     ClientModule,
-    KafkaModule
+    TransactionsModule
   ],
   controllers: [],
   providers: [],
