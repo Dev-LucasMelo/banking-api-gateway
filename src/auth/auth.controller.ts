@@ -32,7 +32,7 @@ export class AuthController {
     @ApiBearerAuth()
     @ApiResponse({
         status: 200,
-        description: 'Login realizado com sucesso.',
+        description: 'logout realizado com sucesso.',
         type: logoutResponseDto
     })
 
@@ -48,7 +48,7 @@ export class AuthController {
     
     @ApiResponse({
         status: 200,
-        description: 'Login realizado com sucesso.',
+        description: 'cadastro realizado com sucesso.',
         type: registerResponseDto
     })
 
