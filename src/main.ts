@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { ValidationError } from 'class-validator';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -38,6 +39,16 @@ async function bootstrap() {
     },
   }));
 
+  //swagger 
+  const config = new DocumentBuilder()
+    .setTitle('API GATEWAY')
+    .setDescription('Essa interface tem como objetivo ser a interface principal da aplicação e rotear as chamadas')
+    .setVersion('1.0')
+    .addTag('api') 
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document); 
 
   app.enableCors();
   await app.listen(3000, '0.0.0.0');
